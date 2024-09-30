@@ -1,0 +1,40 @@
+<.header>
+  Listing Column inbound international wires
+  <:actions>
+    <.link patch={~p"/column_inbound_international_wires/new"}>
+      <.button>New Column inbound international wires</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="column_inbound_international_wires"
+  rows={@streams.column_inbound_international_wires_collection}
+  row_click={fn {_id, column_inbound_international_wires} -> JS.navigate(~p"/column_inbound_international_wires/#{column_inbound_international_wires}") end}
+>
+  <:action :let={{_id, column_inbound_international_wires}}>
+    <div class="sr-only">
+      <.link navigate={~p"/column_inbound_international_wires/#{column_inbound_international_wires}"}>Show</.link>
+    </div>
+    <.link patch={~p"/column_inbound_international_wires/#{column_inbound_international_wires}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, column_inbound_international_wires}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: column_inbound_international_wires.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="column_inbound_international_wires-modal" show on_cancel={JS.patch(~p"/column_inbound_international_wires")}>
+  <.live_component
+    module={TheArcaneEnclaveWeb.ColumnColumnInboundInternationalWiresLive.FormComponent}
+    id={@column_inbound_international_wires.id || :new}
+    title={@page_title}
+    action={@live_action}
+    column_inbound_international_wires={@column_inbound_international_wires}
+    patch={~p"/column_inbound_international_wires"}
+  />
+</.modal>
