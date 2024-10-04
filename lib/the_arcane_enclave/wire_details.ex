@@ -18,7 +18,9 @@ defmodule TheArcaneEnclave.WireDetails do
 
   """
   def list_column_inbound_international_wires do
-    raise "TODO"
+    ColumnInternational
+    |> MercuryRepo.all()
+    |> TheArcaneEnclave.MercuryRepo.preload([:mercury_link, mercury_link: [exogenous_money_movement: [money_movements: :transaction_metadata]]])
   end
 
   @doc """
@@ -33,67 +35,8 @@ defmodule TheArcaneEnclave.WireDetails do
 
   """
   def get_column_inbound_international_wires!(id) do
-    ColumnInternational |> MercuryRepo.get_by(column_id: id)
-  end
-
-  @doc """
-  Creates a column_inbound_international_wires.
-
-  ## Examples
-
-      iex> create_column_inbound_international_wires(%{field: value})
-      {:ok, %ColumnInboundInternationalWires{}}
-
-      iex> create_column_inbound_international_wires(%{field: bad_value})
-      {:error, ...}
-
-  """
-  def create_column_inbound_international_wires(attrs \\ %{}) do
-    raise "TODO"
-  end
-
-  @doc """
-  Updates a column_inbound_international_wires.
-
-  ## Examples
-
-      iex> update_column_inbound_international_wires(column_inbound_international_wires, %{field: new_value})
-      {:ok, %ColumnInboundInternationalWires{}}
-
-      iex> update_column_inbound_international_wires(column_inbound_international_wires, %{field: bad_value})
-      {:error, ...}
-
-  """
-  def update_column_inbound_international_wires(%ColumnInternational{} = column_inbound_international_wires, attrs) do
-    raise "TODO"
-  end
-
-  @doc """
-  Deletes a ColumnInboundInternationalWires.
-
-  ## Examples
-
-      iex> delete_column_inbound_international_wires(column_inbound_international_wires)
-      {:ok, %ColumnInboundInternationalWires{}}
-
-      iex> delete_column_inbound_international_wires(column_inbound_international_wires)
-      {:error, ...}
-
-  """
-  def delete_column_inbound_international_wires(%ColumnInternational{} = column_inbound_international_wires) do
-    raise "TODO"
-  end
-
-  @doc """
-  Returns a data structure for tracking column_inbound_international_wires changes.
-
-  ## Examples
-
-      iex> change_column_inbound_international_wires(column_inbound_international_wires)
-      %Todo{...}
-
-  """
-  def change_column_inbound_international_wires(%ColumnInternational{} = column_inbound_international_wires, _attrs \\ %{}) do
-    raise "TODO"
+    ColumnInternational
+    |> MercuryRepo.get_by(column_id: id)
+    |> TheArcaneEnclave.MercuryRepo.preload([:mercury_link, mercury_link: [exogenous_money_movement: [money_movements: :transaction_metadata]]])
   end
 end

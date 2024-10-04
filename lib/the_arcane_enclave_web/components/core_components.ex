@@ -17,7 +17,7 @@ defmodule TheArcaneEnclaveWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import TheArcaneEnclaveWeb.Gettext
+  use Gettext, backend: TheArcaneEnclaveWeb.Gettext
 
   @doc """
   Renders a modal.

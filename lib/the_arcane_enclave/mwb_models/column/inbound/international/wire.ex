@@ -8,5 +8,6 @@ defmodule TheArcaneEnclave.MwbModels.Column.Inbound.International.Wire do
     field :wire_data, :map
 
     has_many :states, TheArcaneEnclave.Mercury.Column.Inbound.International.WireStates, foreign_key: :wire_id, references: :column_id
+    has_one :mercury_link, TheArcaneEnclave.MwbModels.Column.Inbound.International.MercuryLink, foreign_key: :column_id, references: :column_id
   end
 end

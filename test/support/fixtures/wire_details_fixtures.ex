@@ -7,14 +7,11 @@ defmodule TheArcaneEnclave.WireDetailsFixtures do
   @doc """
   Generate a column_inbound_international_wires.
   """
-  def column_inbound_international_wires_fixture(attrs \\ %{}) do
-    {:ok, column_inbound_international_wires} =
-      attrs
-      |> Enum.into(%{
+  def column_inbound_international_wires_fixture(_attrs \\ %{}) do
+    stub_column_international_wire()
+  end
 
-      })
-      |> TheArcaneEnclave.WireDetails.create_column_inbound_international_wires()
-
-    column_inbound_international_wires
+  defp stub_column_international_wire do
+    %TheArcaneEnclave.MwbModels.Column.Inbound.International.Wire{ column_id: "test", wire_data: %{}}
   end
 end

@@ -36,12 +36,4 @@ defmodule TheArcaneEnclaveWeb.ColumnColumnInboundInternationalWiresLive.Index do
   def handle_info({TheArcaneEnclaveWeb.ColumnColumnInboundInternationalWiresLive.FormComponent, {:saved, column_inbound_international_wires}}, socket) do
     {:noreply, stream_insert(socket, :column_inbound_international_wires_collection, column_inbound_international_wires)}
   end
-
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    column_inbound_international_wires = WireDetails.get_column_inbound_international_wires!(id)
-    {:ok, _} = WireDetails.delete_column_inbound_international_wires(column_inbound_international_wires)
-
-    {:noreply, stream_delete(socket, :column_inbound_international_wires_collection, column_inbound_international_wires)}
-  end
 end

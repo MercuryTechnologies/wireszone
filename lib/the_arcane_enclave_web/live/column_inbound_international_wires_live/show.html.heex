@@ -8,17 +8,27 @@
   </:actions>
 </.header>
 
+
+<.live_component
+  module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.TransactionDetailsComponent}
+  id={@column_inbound_international_wires.column_id}
+  money_movements={@column_inbound_international_wires.mercury_link.exogenous_money_movement.money_movements}
+/>
+
+
 <.live_component
   module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.MockCallComponent}
   id="blah"
   messages={@messages}
 />
 
-<.live_component
-  module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapComponent}
-  wire_data={@column_inbound_international_wires.wire_data}
-  id="nested-wire-data"
-/>
+<%= if @column_inbound_international_wires.wire_data do %>
+  <.live_component
+    module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapComponent}
+    wire_data={@column_inbound_international_wires.wire_data}
+    id="nested-wire-data"
+  />
+<% end %>
 
 <.live_component
   module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.ReturnButton}

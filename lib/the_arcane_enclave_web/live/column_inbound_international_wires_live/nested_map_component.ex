@@ -2,9 +2,6 @@ defmodule TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapCompo
   use TheArcaneEnclaveWeb, :live_component
   use TheArcaneEnclaveWeb, :html
 
-
-  alias TheArcaneEnclave.WireDetails
-
   @impl true
   def render(assigns) do
     ~H"""
