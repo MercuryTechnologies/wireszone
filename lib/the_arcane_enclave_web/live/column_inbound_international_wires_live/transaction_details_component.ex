@@ -14,7 +14,7 @@ defmodule TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.TransactionDet
 
   def render(assigns) do
     ~H"""
-    <div class="flex flex-row">
+    <div class="p-6 bg-gray-100 rounded-lg shadow-md max-w-4xl mx-auto">
       <%= for mm <- @money_movements do %>
         <p><%= mm.transaction_metadata.amount %></p>
         <button

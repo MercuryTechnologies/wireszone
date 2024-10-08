@@ -3,3 +3,16 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+
+.copyable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.copyable {
+  transition: transform 0.2s ease-in-out;
+}
+
+.copyable.copied {
+  transform: scale(1.2);
+}

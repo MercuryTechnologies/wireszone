@@ -52,7 +52,7 @@ defmodule TheArcaneEnclaveWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {TheArcaneEnclaveWeb.Layouts, :app}
+        layout: {TheArcaneEnclaveWeb.Layouts, :transaction_detail}
 
       unquote(html_helpers())
     end

@@ -14,6 +14,15 @@ defmodule TheArcaneEnclaveWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug Ueberauth
+  end
+
+  scope "/auth" do
+    pipe_through [:browser, :auth]
+    get "/:provider/callback", AuthController, :callback
+  end
+
   scope "/", TheArcaneEnclaveWeb do
     pipe_through :browser
 

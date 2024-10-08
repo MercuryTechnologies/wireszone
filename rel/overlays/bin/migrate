@@ -1,5 +1,0 @@
-#!/bin/sh
-set -eu
-
-cd -P -- "$(dirname -- "$0")"
-exec ./the_arcane_enclave eval TheArcaneEnclave.Release.migrate

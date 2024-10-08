@@ -31,7 +31,7 @@ defmodule TheArcaneEnclaveWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :the_arcane_enclave
+    # plug Phoenix.Ecto.CheckRepoStatus, otp_app: :the_arcane_enclave
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

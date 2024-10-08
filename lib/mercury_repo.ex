@@ -1,5 +1,6 @@
 defmodule TheArcaneEnclave.MercuryRepo do
   use Ecto.Repo,
     otp_app: :the_arcane_enclave,
-    adapter: Ecto.Adapters.Postgres
+    adapter: Ecto.Adapters.Postgres,
+    read_only: true
 end

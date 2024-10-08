@@ -9,12 +9,17 @@ config :the_arcane_enclave, TheArcaneEnclave.Repo,
   pool_size: 10
 
 config :the_arcane_enclave, TheArcaneEnclave.MercuryRepo,
-  hostname: "localhost",
-  database: "mercury-web-backend-development",
+  # hostname: "localhost",
+  # database: "mercury-web-backend-development",
+  url: "postgres://teleport_readonly@localhost:54321/mercury_web_backend",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
+config :the_arcane_enclave, TheArcaneEnclave.MercuryRepo,
+  migration_repo: TheArcaneEnclave.MercuryRepo,
+  hostname: "localhost",
+  database: "mercury-web-backend-development"
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
