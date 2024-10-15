@@ -19,7 +19,7 @@ defmodule TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapCompo
   defp render_map(assigns) do
     ~H"""
     <div class="grid">
-      <%= for {{key, value}, index} <- Enum.with_index(Enum.to_list(@map)) do %>
+      <%= for {key, value} <- @map do %>
         <%= if is_map(value) do %>
           <div class="mb-4">
             <p class="font-semibold text-gray-800"><%= titleize(key) %>:</p>
@@ -28,14 +28,15 @@ defmodule TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapCompo
             </div>
           </div>
         <% else %>
-          <div class="grid grid-cols-[minmax(150px,auto)_1fr] gap-2 items-start border-b-[6px] border-dashed border-purple-200">
+          <div class="grid grid-cols-[minmax(150px,auto)_1fr] gap-2 items-start border-b-[4px] border-dashed border-purple-200">
             <span class="font-semibold text-gray-800"><%= titleize(key) %>:</span>
             <span
               class="text-gray-600 copyable"
-              id={"info-#{index}"}
+              id={"info-#{key}"}
               phx-click={
-                JS.dispatch("my_app:clipcopy")
-                |> JS.add_class("copied", to: "#info-#{index}")
+                JS.dispatch("tae:clipcopy")
+                |> JS.add_class("copied")
+                |> JS.remove_class("copied", transition: {"ease-out duration-100", "opacity-0", "opacity-100"})
                 }
             ><%= value %></span>
           </div>

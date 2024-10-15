@@ -33,7 +33,7 @@
 </main>
 
 <script>
-  window.addEventListener("my_app:clipcopy", (event) => {
+  window.addEventListener("tae:clipcopy", (event) => {
     if ("clipboard" in navigator) {
       const text = event.target.textContent;
       navigator.clipboard.writeText(text);

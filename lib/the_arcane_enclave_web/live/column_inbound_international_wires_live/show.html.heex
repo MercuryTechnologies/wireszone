@@ -22,12 +22,20 @@
     />
 
     <%= if @column_inbound_international_wires.wire_data do %>
-      <.live_component
-        module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapComponent}
-        wire_data={@column_inbound_international_wires.wire_data}
-        id="nested-wire-data"
-      />
+      <details>
+        <.live_component
+          module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.NestedMapComponent}
+          wire_data={@column_inbound_international_wires.wire_data}
+          id="nested-wire-data"
+        />
+      </details>
     <% end %>
+
+    <.live_component
+      module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.ColumnWireStatus}
+      id={@column_inbound_international_wires.column_id}
+      states={@column_inbound_international_wires.states}
+    />
 
     <.live_component
       module={TheArcaneEnclaveWeb.ColumnInboundInternationalWiresLive.ReturnButton}

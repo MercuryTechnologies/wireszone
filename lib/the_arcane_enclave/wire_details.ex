@@ -37,6 +37,6 @@ defmodule TheArcaneEnclave.WireDetails do
   def get_column_inbound_international_wires!(id) do
     ColumnInternational
     |> MercuryRepo.get_by(column_id: id)
-    |> TheArcaneEnclave.MercuryRepo.preload([:mercury_link, mercury_link: [exogenous_money_movement: [money_movements: :transaction_metadata]]])
+    |> TheArcaneEnclave.MercuryRepo.preload([:states, :mercury_link, mercury_link: [exogenous_money_movement: [money_movements: :transaction_metadata]]])
   end
 end
