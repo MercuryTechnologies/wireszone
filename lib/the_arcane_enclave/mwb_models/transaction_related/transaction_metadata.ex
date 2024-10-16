@@ -6,6 +6,6 @@ defmodule TheArcaneEnclave.MwbModels.TransactionRelated.TransactionMetadata do
   schema "transaction_metadata" do
     field :amount, :decimal
 
-    has_one :money_movements, TheArcaneEnclave.MwbModels.TransactionRelated.MoneyMovement, foreign_key: :originating_transaction_id, references: :id
+    has_many :money_movements, TheArcaneEnclave.MwbModels.TransactionRelated.MoneyMovement, foreign_key: :originating_transaction_id, references: :id
   end
 end

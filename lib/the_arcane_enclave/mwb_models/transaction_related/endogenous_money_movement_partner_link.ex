@@ -3,8 +3,6 @@ defmodule TheArcaneEnclave.MwbModels.TransactionRelated.EndogenousMoneyMovementP
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "endogenous_money_movement_partner_link" do
-    field :money_movement_id, :binary_id
-
-    has_many :money_movements, TheArcaneEnclave.MwbModels.TransactionRelated.MoneyMovements, foreign_key: :id, references: :money_movement_id
+    belongs_to :money_movement, TheArcaneEnclave.MwbModels.TransactionRelated.MoneyMovement, references: :money_movement_id, type: :binary_id
   end
 end

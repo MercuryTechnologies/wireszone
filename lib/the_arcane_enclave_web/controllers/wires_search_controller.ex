@@ -28,6 +28,8 @@ defmodule TheArcaneEnclaveWeb.WiresSearchController do
         evolve_raw_inbound_wires: [%RawWires{} | _]
       } ->
         render(conn, :something_is_severely_jacked, wires: search_result)
+      %TheArcaneEnclave.MwbModels.TransactionRelated.TransactionMetadata{} ->
+        render(conn, :transaction, transaction: search_result)
       %{} ->
         render(conn, :no_results)
       end

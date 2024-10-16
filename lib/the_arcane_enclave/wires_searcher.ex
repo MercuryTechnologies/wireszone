@@ -16,12 +16,22 @@ defmodule TheArcaneEnclave.WiresSearcher do
   def search_for_wire("2018" <> _rest = imad), do: search_by_imad(imad)
   def search_for_wire("swft_" <> _ = column_id), do: search_column_international_wires(column_id)
   def search_for_wire("wire_" <> _ = column_id), do: search_column_domestic_wires(column_id)
-  def search_for_wire(id) do
-    # Try by transaction metadata
 
+  def search_for_wire(id) do
+    # This is just a lil pattern for "if nothing is found, do the next thing" rather than having
+    # to do a `case` or a `with`.
+    #
+    # If you want to add a query that gets hit if the previous one doesn't find anything, make sure you add the
+    # empty case of the one before it. Something like:
+    # def next_query(nil), do: ...
+    # def next_query([]), do: ...
+    # def next_query(result), do: result
+    id
+    |> transaction_lookup
+    |> other_lookup
   end
 
-  def search_column_international_wires(column_id) do
+  def search_column_international_wires("swft_" <> _ = column_id) do
     from(w in ColumnInternational, where: w.column_id == ^column_id)
     |> MercuryRepo.all()
   end
@@ -43,4 +53,26 @@ defmodule TheArcaneEnclave.WiresSearcher do
         |> MercuryRepo.all
     }
   end
+
+  defp transaction_lookup(uuid) do
+    case Ecto.UUID.cast(uuid) do
+      {:ok, uuid} ->
+        query =
+          from tm in TheArcaneEnclave.MwbModels.TransactionRelated.TransactionMetadata,
+            where: tm.id == ^uuid,
+            preload: [
+              money_movements: [
+                :exogenous_money_movement_partner_link,
+                :endogenous_money_movement_partner_link
+              ]
+            ]
+        TheArcaneEnclave.MercuryRepo.one(query)
+
+      :error ->
+        nil
+    end
+  end
+
+  defp other_lookup(nil), do: nil
+  defp other_lookup(result), do: result
 end
