@@ -16,8 +16,9 @@ defmodule TheArcaneEnclave.WiresSearcher do
   def search_for_wire("2018" <> _rest = imad), do: search_by_imad(imad)
   def search_for_wire("swft_" <> _ = column_id), do: search_column_international_wires(column_id)
   def search_for_wire("wire_" <> _ = column_id), do: search_column_domestic_wires(column_id)
-  def search_for_wire(_other) do
-    %{}
+  def search_for_wire(id) do
+    # Try by transaction metadata
+
   end
 
   def search_column_international_wires(column_id) do
